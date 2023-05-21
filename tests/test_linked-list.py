@@ -105,12 +105,12 @@ def test_insert_before_linked_lists(setup_linked_list):
     expected = " studet01 kkkk studet02 studet03 "
     assert actual == expected
 
-# def test_insert_before_first_linked_lists(setup_linked_list):
-#     linkedlist=setup_linked_list
-#     linkedlist.insert_before("studet01","kkkk")
-#     actual = linkedlist.traverse()
-#     expected = " kkkk studet01 studet02 studet03 "
-#     assert actual == expected
+def test_insert_before_first_linked_lists(setup_linked_list):
+    linkedlist=setup_linked_list
+    linkedlist.insert_before("studet01","kkkk")
+    actual = linkedlist.traverse()
+    expected = " kkkk studet01 studet02 studet03 "
+    assert actual == expected
 
 def test_insert_after_linked_lists(setup_linked_list):
     '''

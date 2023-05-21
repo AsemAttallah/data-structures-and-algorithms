@@ -82,7 +82,11 @@ class LinkedList:
         current=self.head
         
         while current:
-            if current.next.value==value_exist:
+            if current.value==value_exist:
+                inserted_node.next=self.head
+                self.head=inserted_node
+                return self.head
+            elif current.next.value==value_exist:
                 inserted_node.next=current.next
                 current.next=inserted_node
                 return current
@@ -100,7 +104,8 @@ class LinkedList:
                 current.next=inserted_node
                 return current
             current=current.next
-        
+
+
 
     
 
