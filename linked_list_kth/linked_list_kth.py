@@ -104,6 +104,42 @@ class LinkedList:
                 current.next=inserted_node
                 return current
             current=current.next
+###
+    def kth(self,k=0):
+        current=self.head
+        x=""
+        y=0
+        while current:
+            y+=1
+            z=y
+            current=current.next
+        else:
+            if k<0 :
+                raise IndexError("Negative value not accepted")
+            elif 0<=k<z:
+                current=self.head
+                while current:
+                    y-=1
+                    if y==k:
+                        x=(current.value)
+                        return x 
+                    current=current.next
+            elif k==z:
+                raise IndexError("length of list is equal to k")
+            elif k>y:
+                raise IndexError("Index out of range")
+            
+
+            
+            
+if __name__=="__main__":
+    node3 = Node("studet03")
+    node2 = Node("studet02", node3)
+    node1 = Node("studet01", node2)
+    linkedlist=LinkedList(node1)
+
+    print(linkedlist.kth(-5))
+        
 
 
 
