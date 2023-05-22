@@ -1,7 +1,7 @@
 # Code Challenge 07 : linked-list-kth
 ## Whiteboard Process
-* ### kth
-     ![code challenge 07:  linked-list-kth](./insertAfter06.GIF)
+
+![code challenge 07: linked-list-kth](./kth.GIF)
 
 
 
