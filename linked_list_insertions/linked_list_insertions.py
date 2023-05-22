@@ -61,32 +61,51 @@ class LinkedList:
             current=current.next
         string+=  " None" 
         return string
-
+######
+    def append_to_linked_list(self,appended_vlaue):
+        '''
+        This method to append a value as node to the linked list
+        '''
+        appended_node=Node(appended_vlaue)
+        current=self.head
+        while current:
+            if current.next==None:
+                current.next=appended_node
+                return current.next
+            current=current.next
+    
+    def insert_before(self,value_exist,inserted_value):
+        '''
+        This method to append a value as node before a specific value of node 
+        '''
+        inserted_node=Node(inserted_value)
+        current=self.head
         
+        while current:
+            if current.value==value_exist:
+                inserted_node.next=self.head
+                self.head=inserted_node
+                return self.head
+            elif current.next.value==value_exist:
+                inserted_node.next=current.next
+                current.next=inserted_node
+                return current
+            current=current.next
+    
+    def insert_after(self,value_exist,inserted_value_after):
+        '''
+        This method to append a value as node after a specific value of node 
+        '''
+        inserted_node=Node(inserted_value_after)
+        current=self.head
+        while current:
+            if current.value==value_exist:
+                inserted_node.next=current.next
+                current.next=inserted_node
+                return current
+            current=current.next
 
 
-
-# if __name__=="__main__":
-#     node3=Node("studet03")
-#     node2=Node("studet02",node3)
-#     node1=Node("studet01",node2)
-
-#     linkedlist=LinkedList(node1)
-#     # print(LinkedList(node1).to_string())
-#     # linkedlist=LinkedList(node1)
-#     # print(LinkedList(node1).head.value)
-#     # print(head)
-#     # linkedlist.insert("studet047")
-#     # LinkedList(node1).append_to_linked_list("ddd")
-#     # print(linkedlist.traverse())
-#     # LinkedList(node1).insert_before("studet02","kkkk")
-#     # LinkedList(node1).insert_after("studet03","kkkk")
-#     # print(linkedlist.kth(2))
-#     print(linkedlist.kth(-2))
-#     # print(linkedlist.traverse())
-#     # print(node1.next.value)
-#     # print(linkedlist.traverse())
-#     # print(LinkedList(node1).include("studet03"))
 
     
 

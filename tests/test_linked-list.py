@@ -1,5 +1,5 @@
 import pytest
-from linked_list.linked_list import Node,LinkedList
+from linked_list_insertions.linked_list_insertions import Node,LinkedList
 
 @pytest.fixture # This fixture used to make each test independet on other test 
 def setup_linked_list():
@@ -71,3 +71,63 @@ def test_all_values(setup_linked_list):
     expected = "{ studet01 } -> { studet02 } -> { studet03 } ->  None"
     assert actual == expected
 
+###
+
+def test_append_to_linked_lists(setup_linked_list):
+    '''
+    This test to check if append method is worked
+    '''
+    linkedlist=setup_linked_list
+    linkedlist.append_to_linked_list("studet99")
+    actual = linkedlist.traverse()
+    expected = " studet01 studet02 studet03 studet99 "
+    assert actual == expected
+
+def test_append_multi_nodes_to_linked_lists(setup_linked_list):
+    '''
+    This test to check if we can append multi nodes
+    '''
+    linkedlist=setup_linked_list
+    linkedlist.append_to_linked_list("studet99")
+    linkedlist.append_to_linked_list("studet100")
+    linkedlist.append_to_linked_list("studet101")
+    actual = linkedlist.traverse()
+    expected = " studet01 studet02 studet03 studet99 studet100 studet101 "
+    assert actual == expected
+
+def test_insert_before_linked_lists(setup_linked_list):
+    '''
+    This test to check if insert before method  is worked
+    '''
+    linkedlist=setup_linked_list
+    linkedlist.insert_before("studet02","kkkk")
+    actual = linkedlist.traverse()
+    expected = " studet01 kkkk studet02 studet03 "
+    assert actual == expected
+
+def test_insert_before_first_linked_lists(setup_linked_list):
+    linkedlist=setup_linked_list
+    linkedlist.insert_before("studet01","kkkk")
+    actual = linkedlist.traverse()
+    expected = " kkkk studet01 studet02 studet03 "
+    assert actual == expected
+
+def test_insert_after_linked_lists(setup_linked_list):
+    '''
+    This test to check if insert after method  is worked
+    '''
+    linkedlist=setup_linked_list
+    linkedlist.insert_after("studet02","kkkk")
+    actual = linkedlist.traverse()
+    expected = " studet01 studet02 kkkk studet03 "
+    assert actual == expected
+
+def test_insert_after_last_linked_lists(setup_linked_list):
+    '''
+    This test to check if insert after method is worked to insert a node at the end of the linked list
+    '''
+    linkedlist=setup_linked_list
+    linkedlist.insert_after("studet03","kkkk")
+    actual = linkedlist.traverse()
+    expected = " studet01 studet02 studet03 kkkk "
+    assert actual == expected
