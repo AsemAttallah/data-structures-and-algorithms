@@ -1,5 +1,5 @@
 import pytest
-from linked_list_insertions.linked_list_insertions import Node,LinkedList
+from linked_list_kth.linked_list_kth import Node,LinkedList
 
 @pytest.fixture # This fixture used to make each test independet on other test 
 def setup_linked_list():
@@ -130,4 +130,39 @@ def test_insert_after_last_linked_lists(setup_linked_list):
     linkedlist.insert_after("studet03","kkkk")
     actual = linkedlist.traverse()
     expected = " studet01 studet02 studet03 kkkk "
+    assert actual == expected
+###
+def test_kth_greater_linked_lists(setup_linked_list):
+    linkedlist = setup_linked_list
+    with pytest.raises(IndexError) as excinfo:
+        linkedlist.kth(5)  
+    assert str(excinfo.value) == "Index out of range"
+
+def test_kth_same_length_linked_lists(setup_linked_list):
+    linkedlist = setup_linked_list
+    with pytest.raises(IndexError) as excinfo:
+        linkedlist.kth(3)  
+    assert str(excinfo.value) == "length of list is equal to k"
+
+@pytest.fixture
+def setup_linked_list2():
+    node1 = Node("studet01", )
+    return LinkedList(node1)
+
+def test_kth_one_size_linked_lists(setup_linked_list2):
+    linkedlist=setup_linked_list2
+    actual = linkedlist.kth(0)
+    expected = "studet01"
+    assert actual == expected
+
+def test_kth_not_positive_linked_lists(setup_linked_list):
+    linkedlist = setup_linked_list
+    with pytest.raises(IndexError) as excinfo:
+        linkedlist.kth(-5)  
+    assert str(excinfo.value) == "Negative value not accepted"
+
+def test_kth_happy_path_linked_lists(setup_linked_list):
+    linkedlist=setup_linked_list
+    actual = linkedlist.kth(1)
+    expected = "studet02"
     assert actual == expected
