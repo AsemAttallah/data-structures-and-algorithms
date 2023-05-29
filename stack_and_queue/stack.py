@@ -40,6 +40,7 @@ class Stack:
         else:
             temp=self.top
             self.top=temp.next
+            temp.next=None
             return temp.value
         
     def peek(self):
