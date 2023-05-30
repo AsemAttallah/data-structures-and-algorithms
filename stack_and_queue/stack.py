@@ -75,8 +75,8 @@ class Stack:
     
 class PseudoQueue:
     def __init__(self,top=None):
-        self.stack = Stack(top)
-        self.stack_2 = Stack(top)
+        self.stack = Stack()
+        self.stack_2 = Stack()
 
     def enqueue(self, value):
         self.stack.push(value)
