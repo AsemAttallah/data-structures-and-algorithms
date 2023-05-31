@@ -3,3 +3,4 @@
 * ## [Code Challenge 02: array-reverse](./array_insert_shift/README.md)
 * ## [Code Challenge 03: array-binary-search](./array_binary_search/README%20.md)
 * ## [Code Challenge 07: linked-list-kth](./linked_list_kth/README.md)
+* ## [Code Challenge 08: linked-list-zip](./linked_list_kth/README.md)
