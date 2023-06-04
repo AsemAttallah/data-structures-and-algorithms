@@ -60,29 +60,26 @@ class Stack:
             return True
         else:
             return False
-
-    def __str__(self):
-        '''
-        This method to return all node in stack
-        '''
-        current=self.top
-        string=""
-        while current:
-            string+=f"{current.value}"
-            string+=" -> "
-            current=current.next
-        return string+"None"
     
 class PseudoQueue:
+    '''
+    This class to inheaerte a pseudo queue
+    '''
     def __init__(self,top=None):
-        self.stack = Stack()
+        self.stack = Stack(top)
         self.stack_2 = Stack()
 
     def enqueue(self, value):
+        '''
+        This method to add a node in to a pseudo queue, it's take one argument (value)
+        '''
         self.stack.push(value)
     
     
-    def dequeue(self,value):
+    def dequeue(self):
+        '''
+        This method to delete the node from the front return its value 
+        '''
         if self.stack.top==None:
             raise Exception ("The pseudo queue is empty")
         else:
@@ -99,46 +96,24 @@ class PseudoQueue:
         
     def __str__(self):
         '''
-        This method to return all node in stack
+        This method to return all node in pseudo queue
         '''
         current=self.stack.top
         string=""
         while current:
-            string+=f"{current.value}"
-            string+=" -> "
+            string+= "[" + f"{current.value}" + "]"+ " -> "
             current=current.next
         return string+"None"
 
 
 
-if __name__=="__main__":
-    # stack_01=Stack()
-    # stack_02=Stack()
-    pseudo_queue=PseudoQueue()
-    pseudo_queue2=PseudoQueue()
+if __name__=="__main__":   
+    node4 = Node(20)
+    node3 = Node(15, node4)
+    node2 = Node(10,node3)
+    node1 = Node(5,node2)
+    pseudo_queue=PseudoQueue(node1)
 
-    # pseudo_queue.push("asem")
-    pseudo_queue.enqueue("omar")
-    pseudo_queue.enqueue("Ahmad")
-    pseudo_queue.enqueue("essa")
-    # pseudo_queue2.enqueue("Ahmad")
-    # pseudo_queue2.enqueue("essa")
-    # stack_01.push(2)
-    # stack_01.push(3)
-    # stack_02.push("hfg")
-    # stack_02.push("ewr")
-    # pseudo_queue.push(2)
-    # print(stack_01.top)
-    print(pseudo_queue)
-    print(pseudo_queue.dequeue("essa"))
-    # stack_01.push(4)
-    # print(stack_01)
-    # print(stack_02)
-    # print(stack_01.pop())
-    # print(stack_01)
-    # print(stack_01.is_empty())
-    # print(stack_01.peek())
-    # print(stack_01.top.value)
-    # print(stack_01.pop())
-    # print(stack_01)
+    print(pseudo_queue.dequeue())
+    print(pseudo_queue.__str__())
 
