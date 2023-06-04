@@ -60,35 +60,60 @@ class Stack:
             return True
         else:
             return False
+    
+class PseudoQueue:
+    '''
+    This class to inheaerte a pseudo queue
+    '''
+    def __init__(self,top=None):
+        self.stack = Stack(top)
+        self.stack_2 = Stack()
 
+    def enqueue(self, value):
+        '''
+        This method to add a node in to a pseudo queue, it's take one argument (value)
+        '''
+        self.stack.push(value)
+    
+    
+    def dequeue(self):
+        '''
+        This method to delete the node from the front return its value 
+        '''
+        if self.stack.top==None:
+            raise Exception ("The pseudo queue is empty")
+        else:
+            while self.stack.top!=None:
+                value = self.stack.pop()
+                self.stack_2.push(value)
+            dequeued_value = self.stack_2.pop()
+
+            while self.stack_2.top!=None:
+                value = self.stack_2.pop()
+                self.stack.push(value)
+            
+            return dequeued_value
+        
     def __str__(self):
         '''
-        This method to return all node in stack
+        This method to return all node in pseudo queue
         '''
-        current=self.top
+        current=self.stack.top
         string=""
         while current:
-            string+=f"{current.value}"
-            string+=" -> "
+            string+= "[" + f"{current.value}" + "]"+ " -> "
             current=current.next
         return string+"None"
-    
 
 
 
-if __name__=="__main__":
-    stack_01=Stack()
-    stack_01.push(1)
-    stack_01.push(2)
-    stack_01.push(3)
-    print(stack_01)
-    # stack_01.push(4)
-    # print(stack_01)
-    # print(stack_01.pop())
-    print(stack_01)
-    # print(stack_01.is_empty())
-    # print(stack_01.peek())
-    # print(stack_01.top.value)
-    # print(stack_01.pop())
-    # print(stack_01)
+if __name__=="__main__":   
+    node4 = Node(20)
+    node3 = Node(15, node4)
+    node2 = Node(10,node3)
+    node1 = Node(5,node2)
+    pseudo_queue=PseudoQueue(node1)
+
+    print(pseudo_queue.dequeue())
+    print(pseudo_queue.__str__())
 
