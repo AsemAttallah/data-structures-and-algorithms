@@ -1,46 +1,40 @@
-# Code challenge 10 : stack and queue
+# Code challenge 12 : stack-queue-animal-shelter
+## Whiteboard Process
+* ### enqueue method
+     ![code challenge 12:stack-queue-animal-shelter](./enq12.GIF)
+
+* ### dequeue method
+     ![code challenge 12:stack-queue-animal-shelter](./deq12.GIF)
+
 ## Approach & Efficiency
-* In this challenge I did not need to iterating just in one method (str) so it's time complexity is O(n), otherwise time complexity is O(1), And the space complexity is O(1)
+* In this challenge I used if statement to make a specific  condition I did not need to make traverasing so time complexity = O(1).
+* Big O: time complexity = O(1)
 * Big O: space complexity = O(1)
 ## Solution
-* stack
-
-          push:
-          stack_01=Stack()
-          stack_01.push(1)
-          stack_01.push(2)
-          stack_01.push(3)
-          stack_01.push(4)
-          stack_01 : 4 -> 3 -> 2 -> 1 -> None
-
-          pop: 
-          stack_01.pop() => 4
-          stack_01 : 3 -> 2 -> 1 -> None
-
-          peek:
-          stack_01.peek() => 3
-
-          is_empty:
-          stack_01.is_empty => False
 
 * queue
 
-          enqueue:
-          q=Queue()
-          q.enqueue(1)
-          q.enqueue(2)
-          q.enqueue(3)
-          q.enqueue(4)
-          q : 1 -> 2 -> 3 -> 4 -> None
+        enqueue for (dogs):
+        q=AnimalShelter()
+        q.enqueue("dog","Gogo")
+        q.enqueue("dog","Silver")
+        q:{'dog': 'Gogo'} -> {'dog': 'Silver'} -> None
 
-          dequeue: 
-          q.dequeue() : 2 -> 3 -> 4 -> None
+        enqueue for (cats):
+        q=AnimalShelter()
+        q.enqueue("cat","Lele")
+        q.enqueue("cat","caty")
+        q:{'cat': 'Lele'} -> {'cat': 'caty'} -> None
 
-          peek:
-          q.peek() : 2
+        dequeue for (dogs): 
+        q.dequeue("dog") : {'dog': 'Gogo'}
 
-          is_empty:
-          q.is_empty => False
+        dequeue for (cats): 
+        q.dequeue("cat") : {'cat': 'Lele'}
 
+        dequeue for (not dogs or cats): 
+        q.dequeue("caaat") : None
+
+    
 
 

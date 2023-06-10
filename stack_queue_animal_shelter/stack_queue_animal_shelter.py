@@ -16,7 +16,7 @@ class AnimalShelter:
     '''
     def __init__(self,front_dog=None,back_dog=None,front_cat=None,back_cat=None):
         '''
-        This is an initialization method to inheaerte queue then give all node two things(species,name,front,back)
+        This is an initialization method to inheaerte queue and give these properties an initial values(front_dog,back_dog,front_cat,back_cat)
         '''
         self.front_dog=front_dog
         self.back_dog=back_dog
@@ -26,7 +26,7 @@ class AnimalShelter:
 
     def enqueue(self,species,name):
         '''
-        This method to add a node in to a queue, it's take one argument (value)
+        This method to add a node in to a queue, it's take two arguments (species,name)
         '''
         self.species=species
         self.name=name
@@ -50,12 +50,10 @@ class AnimalShelter:
             else:
                 self.back_cat.next=new_node_cat
                 self.back_cat=new_node_cat
-        else:
-            raise Exception ("wrong species, it's dog or cat")
     
     def dequeue(self,pref):
         '''
-        This method to delete the node from the front return its value 
+        This method to delete the node from the front of its queue and return its value 
         '''
         if pref=="dog":
             temp_dog=self.front_dog
@@ -68,56 +66,9 @@ class AnimalShelter:
             self.front_cat=temp_cat.next
             temp_cat.next=None
             return temp_cat.value
+        
+        if pref!="cat" or pref!="dog":
+            return None
+ 
 
-
-    def __str1__(self):
-        '''
-        This method to return all node in queue
-        '''
-        current_cat=self.front_cat
-        string=""
-        while current_cat:
-            string+=f"{current_cat.value}"
-            string+=" -> "
-            current_cat=current_cat.next
-        return string+"None" 
-    
-    def __str2__(self):
-        '''
-        This method to return all node in queue
-        '''
-        current_dog=self.front_dog
-        string=""
-        while current_dog:
-            string+=f"{current_dog.value}"
-            string+=" -> "
-            current_dog=current_dog.next
-        return string+"None"
-    
-if __name__=="__main__":
-    q=AnimalShelter()
-    q.enqueue("dog","11")
-    q.enqueue("dog","22")
-    # q.enqueue("dog","33")
-    # q.enqueue("dog","44")
-    # q.enqueue("cat","11")
-    # q.enqueue("cat","22")
-    # q.enqueue("Omar")
-    # q.enqueue("Ahmad")
-    # q.enqueue("Welcome")
-    # # q.enqueue("bye")
-    # print(q)
-    print(q.dequeue("dog"))
-    # print(q)
-    # print(q.dequeue("cat"))
-    # print(q.__str1__())
-    print(q.__str2__())
-    # q.dequeue()
-    # q.dequeue()
-    # print(q)
-    # print(q.__str__())
-    # print(q.dequeue())
-    # print(q.peek())
-    # print(q)
-    # print(q.front.value)
-    # print(q.is_empty())
+   
