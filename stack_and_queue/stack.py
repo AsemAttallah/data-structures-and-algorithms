@@ -9,6 +9,7 @@ class Node:
         self.value=value
         self.next=next
 
+
 class Stack:
     '''
     This class to inheaerte a stack
