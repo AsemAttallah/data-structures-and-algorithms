@@ -1,159 +1,27 @@
-class Node:
+class Tnode:
     '''
     This class to inheaerte nodes
     '''
-    def __init__(self,value=None,next=None):
-        '''
-        This is an initialization method to inheaerte nodes to give all node two things(value,next)
-        '''
-        self.value=value
-        self.next=next
-
-
-class Queue:
-    '''
-    This class to inheaerte a queue
-    '''
-    def __init__(self,front=None,back=None):
-        '''
-        This is an initialization method to inheaerte queue then give all node two things(fron,back)
-        '''
-        self.front=front
-        self.back=back
-    def enqueue(self,value):
-        '''
-        This method to add a node in to a queue, it's take one argument (value)
-        '''
-        new_node=Node(value)
-        if self.back==None:
-            self.back=new_node
-            self.front=new_node
-            self.back.next=None
-        else:
-            self.back.next=new_node
-            self.back=new_node
-    
-    def dequeue(self):
-        '''
-        This method to delete the node from the front return its value 
-        '''
-        if self.front==None:
-            raise Exception ("The queue is empty")
-        else:
-            temp=self.front
-            self.front=temp.next
-            temp.next=None
-            return temp.value
-    
-    def peek(self):
-        '''
-        This method to return the value of a front node  
-        '''
-        if self.front==None:
-            raise Exception ("The queue is empty")
-        else:
-            return self.front.value
-    
-    def is_empty(self):
-        '''
-        This method to check if queue is empty or not
-        '''
-        if self.front==None or self.back==None:
-            return True
-        else:
-            return False
-
-    def __str__(self):
-        '''
-        This method to return all node in queue
-        '''
-        current=self.front
-        string=""
-        while current:
-            string+=f"{current.value}"
-            string+=" -> "
-            current=current.next
-        return string+"None"
-
-
-class Stack:
-    '''
-    This class to inheaerte a stack
-    '''
-    def __init__(self,top=None):
-        '''
-        This is an initialization method to inheaerte stack to give it a (top)
-        '''
-        self.top=top
-    
-    def push(self,value):
-        '''
-        This method to push a node in to stack,it's take one argument (value)
-        '''
-        node = Node(value)
-        if self.top==None:
-            self.top=node
-            self.top.next=None
-        else:
-            node.next=self.top
-            self.top=node
-
-    def pop(self):
-        '''
-        This method to delete the node from the top return its value  
-        '''
-        if self.top==None:
-            raise Exception ("The stack is empty")
-        else:
-            temp=self.top
-            self.top=temp.next
-            temp.next=None
-            return temp.value
-        
-    def peek(self):
-        '''
-        This method to return the value of a top node  
-        '''
-        if self.top==None:
-            raise Exception ("The stack is empty")
-        else:
-            return self.top.value
-
-    def is_empty(self):
-        '''
-        This method to check if stack is empty or not
-        '''
-        if self.top==None:
-            return True
-        else:
-            return False
-
-    def __str__(self):
-        '''
-        This method to return all node in stack
-        '''
-        current=self.top
-        string=""
-        while current:
-            string+=f"{current.value}"
-            string+=" -> "
-            current=current.next
-        return string+"None"
-
-class Tnode:
     def __init__(self,value):
         self.value=value
         self.right=None
         self.left=None
 
 class BinaryTree:
+    '''
+    This class to inheaerte a tree
+    '''
     def __init__(self):
+        '''
+        This is an initialization method to inheaerte a properties toor with value none 
+        '''
         self.root=None
     
     def pre_order(self):
-        
+        '''
+        This method to make traversing (root,left,right)
+        '''
         output=[]
-        
         def _walk(root):
             #root
             output.append(root.value)
@@ -170,6 +38,9 @@ class BinaryTree:
         return output
     
     def in_order(self):
+        '''
+        This method to make traversing (left,root,right)
+        '''
         output=[]
         def _walk(root):
             #left
@@ -187,10 +58,11 @@ class BinaryTree:
         return output
     
     def post_order(self):
-        
+        '''
+        This method to make traversing (left,right,root)
+        '''
         output=[]
         def _walk(root):
-            
             #left
             if root.left:
                 _walk(root.left)
@@ -198,28 +70,95 @@ class BinaryTree:
             #right
             if root.right:
                 _walk(root.right)
-            
-            #root
-            output.append(root.value)
-            
 
+            #root
+            output.append(root.value) 
         _walk(self.root)
         return output
+
+class BinarySearchTree(BinaryTree):
+    '''
+    This class to inheaerte a binary search tree
+    '''
+    def add(self,value):
+        '''
+        This method to add a node in its appropriate position in tree, it takes one argument which is the value of added node
+        '''
+        def _walk(root):
+            if root.value>=value:
+                if root.left:
+                    _walk(root.left)
+                else:
+                    root.left=Tnode(value)
+            
+            elif root.value<value:
+                if root.right:
+                    _walk(root.right)
+                else:
+                    root.right=Tnode(value)
+        try:
+            _walk(self.root)
+        except:
+            self.root=Tnode(value)
+
+    def contains(self,find_value):
+        '''
+        This method to check if the value given as argument is exist in the nodes to return True or not to return False 
+        '''
+        def _finder(root):
+            print(root.value)
+            
+            if root.value==find_value:
+                return True
+
+            elif root.value>find_value:
+                if root.left:
+                    return _finder(root.left)
+            
+            elif root.value<find_value:
+                if root.right:
+                    return _finder(root.right)
+            
+            return False
+    
+        return _finder(self.root)
+        
+
+        
+    
+            
+        
 
 
 
 
 if __name__=="__main__":
-    tree=BinaryTree()
-    tree.root=Tnode(10)
-    tree.root.left=Tnode(20)
-    tree.root.right=Tnode(50)
-    tree.root.left.left=Tnode(30)
-    tree.root.left.right=Tnode(40)
-    tree.root.right.left=Tnode(60)
-
+    # tree=BinaryTree()
+    # tree.root=Tnode(10)
+    # tree.root.left=Tnode(20)
+    # tree.root.right=Tnode(50)
+    # tree.root.left.left=Tnode(30)
+    # tree.root.left.right=Tnode(40)
+    # tree.root.right.left=Tnode(60)
+    # tree.add(10)
+    # tree.contains(15)
+    tr=BinarySearchTree()
+    tr.root=Tnode(20)
+    tr.root.left=Tnode(10)
+    tr.root.right=Tnode(50)
+    tr.add(15)
+    # tr.add(20)
+    # tr.add(30)
+    tr.add(40)
+    # tr.add(50)
+    # tr.add(60)
     # print(tree.breadth_first())
-    print(tree.pre_order())
-    print(tree.in_order())
-    print(tree.post_order())
-    
+    # print(tree)
+    # print(tree.root.value)
+    # print(tree.pre_order())
+    # print(tree.contains(20))
+    print(tr.post_order())
+    # print(tree.post_order())
+    # print(tr.pre_order())
+    # print(tr.contains(50))
+    # print(tr.post_order())
