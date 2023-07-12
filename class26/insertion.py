@@ -5,6 +5,7 @@ nearly_sorted = [2,3,5,7,13,11]
 def insertion(arr):
     sorted_arr=[arr[0]]
     for i in range(len(arr)-1):
+        print(sorted_arr)
         if arr[i+1]>=sorted_arr[i]:
             sorted_arr.append(arr[i+1])
         elif arr[i+1]<=sorted_arr[i] and arr[i+1]>=sorted_arr[i-1]:
