@@ -1,7 +1,10 @@
 # example=[9,8,7,6,5,4,3]
 # example=[1,2,3,4,5,6,7]
-example=[9,6]
+example=[2,3,5,7,13,11]
 def merge_sort(list):
+    '''
+    this function to do merge sort
+    '''
     n=len(list)
     if n > 1 :
         mid= int(n/2)
