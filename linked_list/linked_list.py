@@ -24,7 +24,7 @@ class LinkedList:
         This method to reach (traverse) all nodes
         '''
         current=self.head
-        all_values=" "
+        all_values=""
         while current:
             all_values+=(current.value)+" "
             current=current.next
@@ -66,12 +66,17 @@ class LinkedList:
 
 
 
-# if __name__=="__main__":
-#     node3=Node("studet03")
-#     node2=Node("studet02",node3)
-#     node1=Node("studet01",node2)
+if __name__=="__main__":
+    node3=Node("2")
+    node2=Node("8",node3)
+    node1=Node("5",node2)
+    # node1=Node("5",)
 
-#     linkedlist=LinkedList(node1)
+    linkedlist=LinkedList()
+    print(linkedlist.head)
+    print(linkedlist.traverse())
+    # print(linkedlist.include(" "))
+    # print(linkedlist.traverse())
 #     # print(LinkedList(node1).to_string())
 #     # linkedlist=LinkedList(node1)
 #     # print(LinkedList(node1).head.value)
