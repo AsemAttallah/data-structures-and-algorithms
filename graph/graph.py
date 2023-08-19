@@ -43,8 +43,8 @@ class Graph:
         if specified, assign a weight to the edge 
         Both vertices should already be in the graph
         '''
-        edge1 = Edge(end_vertix)
-        edge2 = Edge(start_vertix)
+        edge1 = Edge(end_vertix,weight)
+        edge2 = Edge(start_vertix,weight)
 
         if start_vertix not in self.__adj_list:
             raise KeyError(" vertix not exist")
