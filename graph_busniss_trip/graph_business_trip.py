@@ -48,5 +48,5 @@ if __name__=="__main__":
     arr4=[Narnia, Arendelle, Naboo]
     arr5=[Arendelle, New_Monstropolis, Pandora]
     arr6=[Pandora,Naboo]
-    print(business_trip(g,arr))
+    print(business_trip(g,arr3))
 
