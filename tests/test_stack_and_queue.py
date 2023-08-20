@@ -1,158 +1,51 @@
 import pytest
-from stack_and_queue.stack import Stack
-from stack_and_queue.queue import Queue
+from graph_busniss_trip.graph import Graph
+from graph_busniss_trip.graph_business_trip import business_trip
 
-# stack tests
-
-# 1
-def test_push_to_stack():
-    stack_01=Stack()
-    stack_01.push(1)
-    actual = stack_01.__str__()
-    expected = '1 -> None'
-    assert actual == expected
-
-# 2
-def test_push_multi_values():
-    stack_01=Stack()
-    stack_01.push(1)
-    stack_01.push(2)
-    stack_01.push(3)
-    actual = stack_01.__str__()
-    expected = '3 -> 2 -> 1 -> None'
-    assert actual == expected
-
-# 3
-def test_pop_stack():
-    stack_01=Stack()
-    stack_01.push(1)
-    stack_01.push(2)
-    stack_01.push(3)
-    actual = stack_01.pop()
-    expected = 3
-    actual_2= stack_01.__str__()
-    expected_2 = '2 -> 1 -> None'
-    assert actual == expected
-    assert actual_2 == expected_2
-
-# 4
-def test_is_empty_after_pops():
-    stack_01=Stack()
-    stack_01.push(1)
-    stack_01.push(2)
-    stack_01.push(3)
-    stack_01.pop()
-    stack_01.pop()
-    stack_01.pop()
-    actual = stack_01.is_empty()
-    expected = True
-    assert actual == expected
-
-# 5
-def test_peek_stack():
-    stack_01=Stack()
-    stack_01.push(1)
-    stack_01.push(2)
-    stack_01.push(3)
-    actual = stack_01.peek()
-    expected = 3
-    assert actual == expected
-
-# 6
-def test_empty_stack():
-    stack_01=Stack()
-    actual = stack_01.is_empty()
-    expected = True
-    assert actual == expected
-
-# 7
-def test_pop_or_peek_when_empty_stack():
-    stack_01=Stack()
-    with pytest.raises(Exception) as exception:
-        stack_01.pop()
-    expected_message = 'The stack is empty'
+g=Graph()
+Pandora=g.add_vertix('Pandora')
+Arendelle=g.add_vertix('Arendelle')
+Metroville=g.add_vertix('Metroville')
+New_Monstropolis=g.add_vertix('New_Monstropolis')
+Narnia=g.add_vertix('Narnia')
+Naboo=g.add_vertix('Naboo')
     
-    with pytest.raises(Exception) as exception_2:
-        stack_01.peek()
-    expected_message = 'The stack is empty'
+g.add_edge(Pandora,Arendelle,150)
+g.add_edge(Pandora,Metroville,82)
+g.add_edge(Narnia,Metroville,37)
+g.add_edge(Narnia,Naboo,250)
+g.add_edge(Metroville,Arendelle,99)
+g.add_edge(Metroville,New_Monstropolis,105)
+g.add_edge(Metroville,Naboo,26)
+g.add_edge(Arendelle,New_Monstropolis,42)
+g.add_edge(Naboo,New_Monstropolis,73)
 
-    assert str(exception.value) == expected_message
-    assert str(exception_2.value) == expected_message
 
-# queue tests
 
-# 8
-def test_enqueue_to_queue():
-    q=Queue()
-    q.enqueue("Asem")
-    actual = q.__str__()
-    expected = 'Asem -> None'
-    assert actual == expected
 
-# 9
-def test_enqueue_multi_values():
-    q=Queue()
-    q.enqueue("Asem")
-    q.enqueue("Omar")
-    q.enqueue("Ahmad")
-    actual = q.__str__()
-    expected = 'Asem -> Omar -> Ahmad -> None'
-    assert actual == expected
 
-# 10
-def test_dequeue():
-    q=Queue()
-    q.enqueue("Asem")
-    q.enqueue("Omar")
-    q.enqueue("Ahmad")
-    actual = q.dequeue()
-    expected = 'Asem'
-    actual_2= q.__str__()
-    expected_2 = 'Omar -> Ahmad -> None'
-    assert actual == expected
-    assert actual_2 == expected_2
-    assert actual == expected
-
-# 11
-def test_peek_queue():
-    q=Queue()
-    q.enqueue("Asem")
-    q.enqueue("Omar")
-    q.enqueue("Ahmad")
-    actual = q.peek()
-    expected = 'Asem'
-    assert actual == expected
-
-# 12
-def test_is_empty_after_dequeue():
-    q=Queue()
-    q.enqueue("Asem")
-    q.enqueue("Omar")
-    q.enqueue("Ahmad")
-    q.dequeue()
-    q.dequeue()
-    q.dequeue()
-    actual = q.is_empty()
-    expected = True
-    assert actual == expected
-
-# 13
-def test_empty_queue():
-    q=Queue()
-    actual = q.is_empty()
-    expected = True
-    assert actual == expected
-
-# 14
-def test_dequeue_or_peek_when_empty_queue():
-    q = Queue()
-    with pytest.raises(Exception) as exception:
-        q.dequeue()
-    expected_message = 'The queue is empty'
     
-    with pytest.raises(Exception) as exception_2:
-        q.peek()
-    expected_message = 'The queue is empty'
+def test_case_1():
+    case_1=[Metroville, Pandora]
+    actual = business_trip(g,case_1)
+    expected = "$82"
+    assert actual == expected
 
-    assert str(exception.value) == expected_message
-    assert str(exception_2.value) == expected_message
+def test_case_2():
+    case_2=[Arendelle, New_Monstropolis,Naboo]
+    actual = business_trip(g,case_2)
+    expected = "$115"
+    assert actual == expected
+
+def test_case_3():
+    arr3=[Naboo, Pandora]
+    actual = business_trip(g,arr3)
+    expected = None
+    assert actual == expected
+
+def test_case_4():
+    case_4=[Narnia, Arendelle, Naboo]
+    actual = business_trip(g,case_4)
+    expected = None
+    assert actual == expected
+
